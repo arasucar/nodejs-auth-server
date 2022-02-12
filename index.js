@@ -4,11 +4,13 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const router = require('./router')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 mongoose.connect('mongodb://localhost:27017/auth')
 
 const app = express()
 app.use(bodyParser.json({type: '*/*'}))
+app.use(cors()) // allows requests from anywhere
 app.use(morgan('combined')) // logging
 router(app)
 
